@@ -1,0 +1,303 @@
+// Generic LESS Library 0.2
+
+.animation(@arguments:carousel 60s infinite) {
+	-webkit-animation:@arguments;
+	   -moz-animation:@arguments;
+	        animation:@arguments;
+}
+
+.background-clip(@clipping:padding-box) {
+	-webkit-background-clip:@clipping;
+	   -moz-background-clip:@clipping;
+	        background-clip:@clipping;
+}
+
+.background-size(@size:cover) {
+	-webkit-background-size:@size;
+	   -moz-background-size:@size;
+	     -o-background-size:@size;
+	        background-size:@size;
+}
+
+.box-shadow(@arguments:0 0 0.2em #cccccc) {
+	-webkit-box-shadow:@arguments;
+	   -moz-box-shadow:@arguments;
+	        box-shadow:@arguments;
+}
+.box-shadow-multi(@argument1:0 0 0.2em #cccccc, @argument2:0 0 0.2em #cccccc) {
+	-webkit-box-shadow:@argument1, @argument2;
+	   -moz-box-shadow:@argument1, @argument2;
+	        box-shadow:@argument1, @argument2;
+}
+
+.box-sizing(@sizing:border-box) {
+	-webkit-box-sizing:@sizing;
+	   -moz-box-sizing:@sizing;
+	    -ms-box-sizing:@sizing;
+	        box-sizing:@sizing;
+}
+
+.columns(@count:2, @gap:1em) {	
+	-webkit-column-count:@count; -webkit-column-gap:@gap;
+	   -moz-column-count:@count;	-moz-column-gap:@gap;
+			column-count:@count;		 column-gap:@gap;
+}
+
+
+.desaturate() {
+	@textstring:~"grayscale(1)";
+	-webkit-filter:@textstring;				// Old WebKit
+
+	filter:url(resources.svg#desaturate);	// Gecko
+	filter:gray;							// IE
+
+	@textstring:~"grayscale(100%)";
+	-webkit-filter:@textstring;				// New WebKit
+	-moz-filter:@textstring;
+	-ms-filter:@textstring; 
+	-o-filter:@textstring;					// Not yet supported in Gecko, Opera or IE
+	filter:@textstring;						// Current draft standard
+}
+
+
+.flex-display(@display: flex) {
+	display: ~"-webkit-@{display}";
+	display: ~"-moz-@{display}";
+	display: ~"-ms-@{display}box"; // IE10 uses -ms-flexbox
+	display: ~"-ms-@{display}"; // IE11
+	display: @display;
+}
+.flex(@columns: initial) {
+	-webkit-flex: @columns;
+	-moz-flex: @columns;
+	-ms-flex: @columns;
+	flex: @columns;
+}
+.flex-direction(@direction: row) {
+	-webkit-flex-direction: @direction;
+	-moz-flex-direction: @direction;
+	-ms-flex-direction: @direction;
+	flex-direction: @direction;
+}
+.flex-wrap(@wrap: nowrap) {
+	-webkit-flex-wrap: @wrap;
+	-moz-flex-wrap: @wrap;
+	-ms-flex-wrap: @wrap;
+	flex-wrap: @wrap;
+}
+.flex-flow(@flow) {
+	-webkit-flex-flow: @flow;
+	-moz-flex-flow: @flow;
+	-ms-flex-flow: @flow;
+	flex-flow: @flow;
+}
+.flex-order(@order: 0) {
+	-webkit-order: @order;
+	-moz-order: @order;
+	-ms-order: @order;
+	order: @order;
+}
+.flex-grow(@grow: 0) {
+	-webkit-flex-grow: @grow;
+	-moz-flex-grow: @grow;
+	-ms-flex-grow: @grow;
+	flex-grow: @grow;
+}
+.flex-shrink(@shrink: 1) {
+	-webkit-flex-shrink: @shrink;
+	-moz-flex-shrink: @shrink;
+	-ms-flex-shrink: @shrink;
+	flex-shrink: @shrink;
+}
+.flex-basis(@width: auto) {
+	-webkit-flex-basis: @width;
+	-moz-flex-basis: @width;
+	-ms-flex-basis: @width;
+	flex-basis: @width;
+}
+.justify-content(@justify: flex-start) {
+	-webkit-justify-content: @justify;
+	-moz-justify-content: @justify;
+	-ms-justify-content: @justify;
+	justify-content: @justify;
+}
+.align-content(@align: stretch) {
+	-webkit-align-content: @align;
+	-moz-align-content: @align;
+	-ms-align-content: @align;
+	align-content: @align;
+}
+.align-items(@align: stretch) {
+	-webkit-align-items: @align;
+	-moz-align-items: @align;
+	-ms-align-items: @align;
+	align-items: @align;
+}
+.align-self(@align: auto) {
+	-webkit-align-self: @align;
+	-moz-align-self: @align;
+	-ms-align-self: @align;
+	align-self: @align;
+}
+
+
+
+
+
+
+
+
+// https://github.com/seven-phases-max/less.curious/blob/master/src/for.less
+.for(@i, @n) {.-each(@i)}
+.for(@n) when (isnumber(@n)) {.for(1, @n)}
+.for(@i, @n) when not (@i = @n) {.for((@i + (@n - @i) / abs(@n - @i)), @n);}
+// .for-each
+.for(@array) when (default()) {.for-impl_(length(@array))}
+.for-impl_(@i) when (@i > 1) {.for-impl_((@i - 1))}
+.for-impl_(@i) when (@i > 0) {.-each(extract(@array, @i))}
+
+
+.linear-gradient(@dir:top, @start-color:#eee, @end-color:#aaa, @stop1:0%, @stop2:100%) {
+	background:-webkit-linear-gradient(@dir, @start-color @stop1, @end-color @stop2);
+	background:-moz-linear-gradient(@dir, @start-color @stop1, @end-color @stop2);
+	background:-ms-linear-gradient(@dir, @start-color @stop1, @end-color @stop2);
+	background:-o-linear-gradient(@dir, @start-color @stop1, @end-color @stop2);
+	background:linear-gradient(@dir, @start-color @stop1, @end-color @stop2);
+	.linear-gradient-ie(@dir, @start-color, @end-color);
+}
+.linear-gradient-multi(...) {
+	background-image:-webkit-linear-gradient(@arguments);
+	background-image:-moz-linear-gradient(@arguments);
+	background-image:-ms-linear-gradient(@arguments);
+	background-image:-o-linear-gradient(@arguments);
+	background-image:linear-gradient(@arguments);
+}
+.linear-gradient-ie(@dir, @start-color, @end-color) when (@dir = top),
+	not (isstring(@dir)) and (@dir >= 225) and (@dir < 315),
+	not (isstring(@dir)) and (@dir >= -135) and (@dir < -45) {
+		.linear-gradient-ie-filter(@start-color, @end-color, 0);
+}
+.linear-gradient-ie(@dir, @start-color, @end-color) when (@dir = right),
+	not (isstring(@dir)) and (@dir >= 135) and (@dir < 225),
+	not (isstring(@dir)) and (@dir >= -225) and (@dir < -135) {
+		.linear-gradient-ie-filter(@end-color, @start-color, 1);
+}
+.linear-gradient-ie(@dir, @start-color, @end-color) when (@dir = bottom),
+	not (isstring(@dir)) and (@dir >= 45) and (@dir < 135),
+	not (isstring(@dir)) and (@dir >= -315) and (@dir < -225) {
+		.linear-gradient-ie-filter(@end-color, @start-color, 0);
+}
+.linear-gradient-ie(@dir, @start-color, @end-color) when (@dir = left),
+	not (isstring(@dir)) and (@dir >= 315) and (@dir < 360),
+	not (isstring(@dir)) and (@dir >= -45) and (@dir < 45),
+	not (isstring(@dir)) and (@dir < -315) and (@dir >= -360) {
+		.linear-gradient-ie-filter(@start-color, @end-color, 1);
+}
+.linear-gradient-ie-filter(@start:#eee, @end:#aaa, @type:1) {
+	@c-start:argb(@start);
+	@c-end:argb(@end);
+	filter:~"progid:DXImageTransform.Microsoft.gradient(startColorstr='@{c-start}', endColorstr='@{c-end}', GradientType=@{type})";
+	-ms-filter:~"progid:DXImageTransform.Microsoft.gradient(startColorstr='@{c-start}',endColorstr='@{c-end}',GradientType=@{type})";
+}
+
+
+.opacity(@op:100) {
+	     -ms-filter:~"progid:DXImageTransform.Microsoft.Alpha(opacity=@op)";
+	         filter:alpha(opacity=@op);
+	-webkit-opacity:@op/100;
+	 -khtml-opacity:@op/100;
+	   -moz-opacity:@op/100;
+	        opacity:@op/100;
+}
+
+
+.responsive(@min-size:12px, @max-size:21px, @lower-range:420px, @upper-range:1280px) {
+
+	html {
+	//font-size: calc(12px + 9 * ( (100vw - 420px) / 860));
+		font-size:calc(@min-size + (@min-size - @max-size) * ( (100vw - @lower-range) / ( @upper-range - @lower-range) ));
+	}
+
+	@media screen and (max-width:@lower-range) {
+		html {
+			font-size:@min-size;
+		}
+	}
+
+	@media screen and (min-width:@upper-range) {
+		html {
+			font-size:@max-size;
+		}
+	}
+
+}
+
+
+
+.rotate(@deg:45) {
+	-webkit-transform:rotate(formatstring("{0}deg", @deg));
+	   -moz-transform:rotate(formatstring("{0}deg", @deg));
+	    -ms-transform:rotate(formatstring("{0}deg", @deg));
+	     -o-transform:rotate(formatstring("{0}deg", @deg));
+	        transform:rotate(formatstring("{0}deg", @deg));
+}
+.rotateX(@deg:45) {
+	-webkit-transform:rotateX(formatstring("{0}deg", @deg));
+	   -moz-transform:rotateX(formatstring("{0}deg", @deg));
+	    -ms-transform:rotateX(formatstring("{0}deg", @deg));
+	     -o-transform:rotateX(formatstring("{0}deg", @deg));
+	        transform:rotateX(formatstring("{0}deg", @deg));
+}
+.rotateY(@deg:45) {
+	-webkit-transform:rotateY(formatstring("{0}deg", @deg));
+	   -moz-transform:rotateY(formatstring("{0}deg", @deg));
+	    -ms-transform:rotateY(formatstring("{0}deg", @deg));
+	     -o-transform:rotateY(formatstring("{0}deg", @deg));
+	        transform:rotateY(formatstring("{0}deg", @deg));
+}
+
+.rounded(@arguments:0.5em) {
+	-webkit-border-radius:@arguments;
+	   -moz-border-radius:@arguments;
+	        border-radius:@arguments;
+	//.background-clip();
+}
+
+.scale(@scale_x:1, @scale_y:1) {
+	-webkit-transform:scale(@scale_x, @scale_y);
+	   -moz-transform:scale(@scale_x, @scale_y);
+	    -ms-transform:scale(@scale_x, @scale_y);
+	     -o-transform:scale(@scale_x, @scale_y);
+	        transform:scale(@scale_x, @scale_y);
+}
+
+.skew(@angle_x:35, @angle_y:0) {
+	-webkit-transform:skew(formatstring("{0}deg", @angle_x), formatstring("{0}deg", @angle_y));
+	   -moz-transform:skew(formatstring("{0}deg", @angle_x), formatstring("{0}deg", @angle_y));
+	    -ms-transform:skew(formatstring("{0}deg", @angle_x), formatstring("{0}deg", @angle_y));
+	     -o-transform:skew(formatstring("{0}deg", @angle_x), formatstring("{0}deg", @angle_y));
+	        transform:skew(formatstring("{0}deg", @angle_x), formatstring("{0}deg", @angle_y));
+}
+
+.transform(@arguments) {
+	-webkit-transform:@arguments;
+	   -moz-transform:@arguments;
+	    -ms-transform:@arguments;
+	     -o-transform:@arguments;
+	        transform:@arguments;
+}
+
+.transition(@arguments:all 0.2s ease-out) {
+	-webkit-transition:@arguments;
+       -moz-transition:@arguments;
+         -o-transition:@arguments;
+            transition:@arguments;
+}
+
+.translate(@move_x:1em, @move_y:1em) {
+	-webkit-transform:translate(@move_x, @move_y);
+	   -moz-transform:translate(@move_x, @move_y);
+	    -ms-transform:translate(@move_x, @move_y);
+	     -o-transform:translate(@move_x, @move_y);
+	        transform:translate(@move_x, @move_y);
+}

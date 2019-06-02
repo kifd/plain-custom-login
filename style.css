@@ -1,0 +1,188 @@
+* {
+  margin: 0;
+  padding: 0;
+  text-decoration: none;
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  -ms-box-sizing: border-box;
+  box-sizing: border-box;
+}
+html {
+  font: 62.5%/1.5 Constantia, "Lucida Bright", Lucidabright, "Lucida Serif", Lucida, "DejaVu Serif", "Bitstream Vera Serif", "Liberation Serif", Georgia, serif;
+}
+body.login {
+  font-size: 2rem;
+  height: 100vh;
+  overflow: hidden;
+}
+#wp-auth-check-wrap #wp-auth-check {
+  margin: 0 auto 0 -20rem;
+  width: 45rem;
+  min-height: 60rem;
+  top: 3rem;
+  padding: 2rem 0 0;
+}
+#wp-auth-check-wrap #wp-auth-check body.login {
+  height: 90vh;
+}
+#wp-auth-check-wrap .wp-auth-check-close:before {
+  margin: -3px 0 0;
+}
+#wp-auth-fallback {
+  text-align: center;
+}
+#wp-auth-fallback p {
+  font-size: 2rem;
+  line-height: 1.3;
+}
+#wp-auth-fallback p b {
+  font-size: 2.5rem;
+}
+#wp-auth-fallback p a {
+  font-weight: bold;
+}
+#login_error,
+.message {
+  display: block;
+  max-width: 80%;
+  margin: 0 auto 2rem;
+  padding: 1.6rem 2rem;
+  text-align: center;
+  line-height: 1;
+  border: 0.1rem solid;
+  border-left-width: 1.6rem;
+  -webkit-border-radius: 0.8rem;
+  -moz-border-radius: 0.8rem;
+  border-radius: 0.8rem;
+}
+#login {
+  margin: 5rem auto;
+  max-width: 48rem;
+}
+#login h1 {
+  margin-bottom: 2rem;
+}
+#login h1 a {
+  letter-spacing: -0.02rem;
+  line-height: 0.9;
+  text-transform: uppercase;
+  text-align: center;
+  display: block;
+  max-width: 80%;
+  margin: 0 auto 3rem;
+}
+#login form {
+  max-width: 80%;
+  margin: 1rem auto 0;
+  padding: 2rem;
+  border: 0.1rem solid;
+  -webkit-border-radius: 0.8rem;
+  -moz-border-radius: 0.8rem;
+  border-radius: 0.8rem;
+  text-align: left;
+  font-family: "Segoe UI", Segoe, Tahoma, Geneva, sans-serif;
+}
+#login form .input {
+  margin: 0.1rem auto 0.8rem;
+  padding: 0.8rem;
+  border: 0.1rem solid;
+  -webkit-box-shadow: 0 0.1rem 0.2rem #dddddd inset;
+  -moz-box-shadow: 0 0.1rem 0.2rem #dddddd inset;
+  box-shadow: 0 0.1rem 0.2rem #dddddd inset;
+  -webkit-border-radius: 0.2rem;
+  -moz-border-radius: 0.2rem;
+  border-radius: 0.2rem;
+  width: 100%;
+  outline: none;
+}
+#login form input#user_pass {
+  margin-bottom: 2.4rem;
+}
+#login form .forgetmenot {
+  float: left;
+  position: relative;
+}
+#login form .forgetmenot label {
+  cursor: pointer;
+  margin-left: 4rem;
+  position: relative;
+}
+#login form .forgetmenot label:before {
+  content: "";
+  display: inline-block;
+  width: 3rem;
+  height: 3rem;
+  position: absolute;
+  left: -4rem;
+  bottom: -0.2rem;
+  -webkit-box-shadow: 0 0.1rem 0.2rem #dddddd inset;
+  -moz-box-shadow: 0 0.1rem 0.2rem #dddddd inset;
+  box-shadow: 0 0.1rem 0.2rem #dddddd inset;
+  -webkit-border-radius: 0.2rem;
+  -moz-border-radius: 0.2rem;
+  border-radius: 0.2rem;
+}
+#login form .forgetmenot input[type="checkbox"]:checked + label:before {
+  content: "\2713";
+  font-weight: bold;
+  text-align: center;
+}
+#login form input[type=checkbox] {
+  display: none;
+}
+#login form #reg_passmail {
+  text-align: center;
+}
+#login form p.indicator-hint {
+  clear: both;
+  text-align: justify;
+}
+#login form .submit {
+  display: block;
+  text-align: right;
+}
+#login form .submit input[type="submit"] {
+  cursor: pointer;
+  margin-top: -0.2rem;
+  padding: 0.4rem 0.6rem;
+  font-family: "Segoe UI", Segoe, Tahoma, Geneva, sans-serif;
+  font-weight: bold;
+  text-transform: uppercase;
+  border: 0.1rem solid;
+  -webkit-border-radius: 0.4rem;
+  -moz-border-radius: 0.4rem;
+  border-radius: 0.4rem;
+  -webkit-box-shadow: 0 0.1rem 0.2rem #dddddd;
+  -moz-box-shadow: 0 0.1rem 0.2rem #dddddd;
+  box-shadow: 0 0.1rem 0.2rem #dddddd;
+  -webkit-transition: all 0.2s ease-out;
+  -moz-transition: all 0.2s ease-out;
+  -o-transition: all 0.2s ease-out;
+  transition: all 0.2s ease-out;
+}
+#nav {
+  display: block;
+  max-width: 80%;
+  margin: 1em auto;
+  text-align: center;
+}
+#nav a {
+  text-decoration: none;
+  display: inline-block;
+  position: relative;
+}
+#nav a:hover:after {
+  content: "";
+  width: 100%;
+  display: block;
+  position: relative;
+  top: -0.4rem;
+  border-bottom: 0.06rem solid;
+  z-index: -1;
+}
+#backtoblog {
+  display: none;
+}
+#login #pass-strength-result {
+  position: relative;
+}
