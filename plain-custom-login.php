@@ -1,8 +1,8 @@
 <?php
 /*
 Plugin Name: Plain Custom Login
-Version: 0.22
-Plugin URI: https://drakard.com/
+Version: 0.23.2
+Plugin URI: https://github.com/kifd/plain-custom-login
 Description: Lightweight plugin to let you customise the login page and popup to better reflect your site's appearance.
 Author: Keith Drakard
 Author URI: https://drakard.com/
@@ -12,10 +12,6 @@ class PlainCustomLogin {
 
 	public function __construct() {
 		load_theme_textdomain('PlainCustomLogin', plugin_dir_path(__FILE__).'/languages');
-
-		if (is_admin() AND ! ($this->options = get_option('PlainCustomLoginPluginOptions'))) {
-			add_option('PlainCustomLoginPluginOptions', $this->make_default_selections(), null, false);
-		}
 
 		// plugin settings
 		add_action('admin_init', array($this, 'settings_init'));
@@ -34,14 +30,10 @@ class PlainCustomLogin {
 		add_action('login_footer', array($this, 'enqueue_styles_and_scripts'));
 		add_action('admin_footer', array($this, 'enqueue_styles_and_scripts'));
 
-
-
 		// replace the default WP titles with the site specific ones
 		add_filter('login_headerurl', array($this, 'custom_login_header_url'));
-		add_filter('login_headertitle', array($this, 'custom_login_header_title'));
-
+		add_filter('login_headertext', array($this, 'custom_login_header_text'));
 	}
-
 
 
 
@@ -52,7 +44,11 @@ class PlainCustomLogin {
 		ob_start(array($this, 'remove_head_links'));
 	}
 	public function remove_head_links($head) {
-		return preg_replace("/<link rel='stylesheet' id='.+\-css'  .+>/", '', $head);
+		//return preg_replace("/<link rel='stylesheet' id='.+\-css'  .+>/", '', $head);
+		$head = preg_replace("/<link rel='stylesheet' id='forms\-css'  .+>/", '', $head);
+		$head = preg_replace("/<link rel='stylesheet' id='login\-css'  .+>/", '', $head);
+
+		return $head;
 	}
 	public function remove_head_links_end() {
 		ob_get_flush();
@@ -86,7 +82,9 @@ class PlainCustomLogin {
 			wp_enqueue_script('plain-custom-login-script', plugins_url('admin.js', __FILE__), array('wp-color-picker'), false, true);
 		} else {
 			// if we're on the login page, we still need to get the options
-			$this->options = get_option('PlainCustomLoginPluginOptions');
+			if (! ($this->options = get_option('PlainCustomLoginPluginOptions'))) {
+				$this->options = $this->make_default_selections();
+			}
 		}
 
 		$custom_css = '
@@ -224,24 +222,28 @@ class PlainCustomLogin {
 
 
 
-
-
 	public function custom_login_header_url($url) {
 		return get_bloginfo('url'); // rather than http://wordpress.org
 	}
-	public function custom_login_header_title($message) {
-		return get_bloginfo('description'); // rather than Powered by WP
+	public function custom_login_header_text($message) {
+		return get_bloginfo('title'); // rather than Powered by WP
 	}
 
 
 
+	/******************************************************************************************************************************************************************/
+
 	public function settings_init() {
+		if (! ($this->options = get_option('PlainCustomLoginPluginOptions'))) {
+			add_option('PlainCustomLoginPluginOptions', $this->make_default_selections(), null, false);
+		}
+
 		register_setting('PlainCustomLoginPluginOptions', 'PlainCustomLoginPluginOptions', array($this, 'validate_settings'));
 		add_settings_section('PlainCustomLoginSettings', __('Colours', 'PlainCustomLogin'), array($this, 'colour_settings_form'), 'PlainCustomLoginPlugin');
 	}
 
 	public function add_settings_page() {
-		add_options_page(__('Plain Custom Login Page Options', 'PlainCustomLogin'), __('Plain Custom Login', 'PlainCustomLogin'), 'manage_options', __CLASS__.'/settings.php', array(__CLASS__, 'display_settings_page'));
+		add_options_page(__('Plain Custom Login Page Options', 'PlainCustomLogin'), __('Plain Custom Login', 'PlainCustomLogin'), 'manage_options', __CLASS__.'/settings.php', array($this, 'display_settings_page'));
 	}
 
 	public function display_settings_page() {

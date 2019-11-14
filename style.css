@@ -95,6 +95,25 @@ body.login {
   width: 100%;
   outline: none;
 }
+#login form .wp-pwd {
+  position: relative;
+}
+#login form .wp-pwd .button.wp-hide-pw {
+  background: transparent;
+  border: 1px solid transparent;
+  box-shadow: none;
+  font-size: 14px;
+  line-height: 2;
+  width: 2.5rem;
+  height: 2.5rem;
+  min-width: 40px;
+  min-height: 40px;
+  margin: 0;
+  padding: 5px 9px;
+  position: absolute;
+  right: 0;
+  top: 0;
+}
 #login form input#user_pass {
   margin-bottom: 2.4rem;
 }
@@ -159,6 +178,45 @@ body.login {
   -moz-transition: all 0.2s ease-out;
   -o-transition: all 0.2s ease-out;
   transition: all 0.2s ease-out;
+}
+#login form.admin-email-confirm-form h1 {
+  line-height: 1;
+  text-align: center;
+}
+#login form.admin-email-confirm-form p {
+  margin: 0.8rem 0;
+  line-height: 1.2;
+}
+#login form.admin-email-confirm-form div.admin-email__actions {
+  text-align: center;
+  margin-top: 2rem;
+}
+#login form.admin-email-confirm-form div.admin-email__actions .button {
+  cursor: pointer;
+  padding: 0.4rem 1rem 0.6rem;
+  font-family: "Segoe UI", Segoe, Tahoma, Geneva, sans-serif;
+  font-weight: bold;
+  font-size: 1.8rem;
+  text-transform: uppercase;
+  border: 0.1rem solid;
+  -webkit-border-radius: 0.4rem;
+  -moz-border-radius: 0.4rem;
+  border-radius: 0.4rem;
+  -webkit-box-shadow: 0 0.1rem 0.2rem #dddddd;
+  -moz-box-shadow: 0 0.1rem 0.2rem #dddddd;
+  box-shadow: 0 0.1rem 0.2rem #dddddd;
+  -webkit-transition: all 0.2s ease-out;
+  -moz-transition: all 0.2s ease-out;
+  -o-transition: all 0.2s ease-out;
+  transition: all 0.2s ease-out;
+  color: white;
+  background-color: #a40000;
+}
+#login form.admin-email-confirm-form div.admin-email__actions #correct-admin-email {
+  background-color: #006000;
+}
+#login form.admin-email-confirm-form div.admin-email__actions .admin-email__actions-secondary {
+  margin-top: 1rem;
 }
 #nav {
   display: block;

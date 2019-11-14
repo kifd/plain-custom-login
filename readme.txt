@@ -3,8 +3,8 @@ Contributors: keith_wp
 Donate Link: https://drakard.com/
 Tags: login, custom login, custom login page, custom modal login, wp login, login background
 Requires at least: 3.8 or higher
-Tested up to: 5.2.1
-Stable tag: 0.22
+Tested up to: 5.3
+Stable tag: 0.23.2
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -32,6 +32,19 @@ Nothing fancy, just changes the login screen to reflect your site colours.
 
 == Changelog ==
 
+= 0.23.2 =
+* Bugfix: was using deprecated way of getting the login title text
+* Added CSS for the new admin email checks
+* Slightly more targetted removal of default WP CSS
+* Added CSS for the hide/show password icon
+* Tested with 5.3
+
+= 0.23.1 =
+* Bugfix: was using deprecated way of calling the settings page
+
+= 0.23 =
+* Bugfix: display defaults if you delete the plugin options while the plugin is active
+
 = 0.22 =
 * Tested with 5.2.1
 
@@ -39,7 +52,7 @@ Nothing fancy, just changes the login screen to reflect your site colours.
 * Tested with 4.5
 
 = 0.2 =
-* Added fallback CSS for when the modal popup can't load the iframe
+* Bugfix: added fallback CSS for when the modal popup can't load the iframe
 
 = 0.1 =
 * Internal alpha
